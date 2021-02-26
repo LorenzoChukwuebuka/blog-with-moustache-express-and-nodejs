@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Page</title>
+    <link rel="stylesheet" href="./css/materialize.css">
+    <link rel="stylesheet" href="./fonts/material-icons.css">
+    <link rel="stylesheet" href="./css/styles.css" type="text/css" />
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper green">
+          <a href="/" class="brand-logo">Logo</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/categories">CATEGORIES</a></li>
+            <li><a href="/contact">CONTACT US</a></li>
+            <li><a href="/gateway">Login</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Home</h1>
+        {{#title}}
+            <p>{{name}}</p>
+        {{/title}}
+    </div>
+</body>
+</html>

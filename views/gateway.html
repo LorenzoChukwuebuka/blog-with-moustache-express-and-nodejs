@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeApp - Login</title>
+    <link rel="stylesheet" href="./css/materialize.css">
+    <link rel="stylesheet" href="./fonts/material-icons.css">
+    <link rel="stylesheet" href="./css/styles.css" type="text/css" />
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="loginContainDiv">
+        <form action="/login" method="POST" id="">
+            <div class="internalLoginContainDiv z-depth-3">
+                <h3 class="center">Login</h3>
+                {{#message}}
+                    <div class="alert {{msgType}}">
+                        {{message}}
+                    </div>
+                {{/message}}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="uName">Username</label>
+                        <input type="text" name="user[uName]" id="uName">
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="pass">Password</label>
+                        <input type="password" name="user[uPass]" id="uPass">
+                    </div>
+                    <button type="submit" class="btn waves-effect waves-light col s12" name="logBtn" id="logBtn">
+                        Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <p class="center">Dont't have an account? <a href="#!" id="logSwapBtn">Create Account</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Registry Div -->
+    <div class="regContainDiv hide">
+        <form action="/register" method="POST" id="nodeRegForm">
+            <div class="internalRegContainDiv hoverable">
+                <h3 class="center">Registry <span class="colForm">Form</span></h3>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="fName">Firstname</label>
+                        <input type="text" name="user[uName]" id="uName">
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="lName">Lastname</label>
+                        <input type="text" name="user[lName]" id="lName">
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="regPass">Password</label>
+                        <input type="password" name="user[regPass]" id="regPass">
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="cPass">Confirm Password</label>
+                        <input type="password" name="user[cPass]" id="cPass">
+                    </div>
+                    <button type="submit" class="btn waves-effect waves-light col s12" name="regBtn" id="regBtn">
+                        Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <p class="center" id="regSwapBtn">Already have an account? <a href="#!">Login</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="./js/jquery-3.0.0.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/nodeApp.js"></script>
+    <!-- <script src="./js/index.js"></script> -->
+</body>
+</html>
