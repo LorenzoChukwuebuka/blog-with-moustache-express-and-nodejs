@@ -12,15 +12,28 @@
 <body>
     <nav>
         <div class="nav-wrapper green">
-          <a href="/" class="brand-logo">Logo</a>
+          <a href="/" class="brand-logo">Blog</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/">HOME</a></li>
-            <li><a href="/categories">CATEGORIES</a></li>
-            <li><a href="/contact">CONTACT US</a></li>
-            <li><a href="/gateway">Login</a></li>
+            <!-- <li><a href="/categories">CATEGORIES</a></li>
+            <li><a href="/contact">CONTACT US</a></li> -->
+            {{#uName}}
+                <li><a href="/dashboard">DASHBOARD</a></li>
+                <li><a href="#" class='dropdown-trigger' data-target='drop'>{{uName}}<i class="material-icons right">arrow_drop_down</i></a></li>
+            {{/uName}}
+            {{^uName}}
+                <li><a href="/gateway">Login</a></li>
+            {{/uName}}
           </ul>
         </div>
     </nav>
+
+    <!-- Dropdown Content Section -->
+    <ul class="dropdown-content" id="drop">
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+    </ul>
 
     <div class="container">
         <h1>Home</h1>
@@ -28,5 +41,9 @@
             <p>{{name}}</p>
         {{/title}}
     </div>
+
+    <script src="./js/jquery-3.0.0.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/nodeApp.js"></script>
 </body>
 </html>

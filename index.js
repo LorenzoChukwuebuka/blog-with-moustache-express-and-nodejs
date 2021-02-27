@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-// const form = require('formidable');
+const form = require('formidable');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const http = require("http").Server(app);
@@ -98,10 +98,15 @@ let loginOpera = (uName, uPass, req, res) => {
     if(uName && uPass){
         db.query('SELECT * FROM users WHERE firstname = ? AND userPass = ?', [uName, uPass], function(err, results){
             if(results.length > 0){
-                let login = req.session.Auth = {
-                    uName : uName
-                }
-                res.render('dashboard', login);
+                let userRow = JSON.parse(JSON.stringify(results[0]));
+                let login = req.session.login = true;
+                let uName = req.session.firstname = userRow.firstname;
+
+                res.render('dashboard', {
+                    uName,
+                    login
+                });
+
             } else {
                 res.render('gateway', {
                     message: 'Invalid Username/Password',
@@ -115,7 +120,7 @@ let loginOpera = (uName, uPass, req, res) => {
 // LOGOUT SESSION 
 app.get('/logout', (req, res) => {
     req.session.destroy(function(err){
-        res.redirect('/');
+        res.render('index');
     });
 });
 // Select users 
@@ -165,16 +170,32 @@ app.get('/', function(req, res){
         {name: 'Paul Walker'},
         {name: 'Philip Andrew'}
     ];
+    let uName = req.session.firstname;
     res.render('index', {
-        'title': PageTitle
+        'title': PageTitle,
+        uName: uName
     });
 });
-app.get('/categories', function(req, res){
-    res.render('categories');
+app.get('/dashboard', function(req, res){
+    let uName = req.session.firstname;
+    let login = req.session.login;
+    res.render('dashboard', {
+        login: login,
+        uName: uName
+    });
 });
-app.get('/contact', function(req, res){
-    res.render('contact');
-});
+// app.get('/categories', function(req, res){
+//     let uName = req.session.firstname;
+//     res.render('categories', {
+//         uName: uName
+//     });
+// });
+// app.get('/contact', function(req, res){
+//     let uName = req.session.firstname;
+//     res.render('contact', {
+//         uName: uName
+//     });
+// });
 app.get('/gateway', function(req, res){
     res.render('gateway');
 });

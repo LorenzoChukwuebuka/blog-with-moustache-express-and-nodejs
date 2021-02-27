@@ -10,23 +10,71 @@
     <link rel="stylesheet" href="./css/styles.css" type="text/css" />
 </head>
 <body>
-    <nav>
+    <!-- <nav>
         <div class="nav-wrapper green">
           <a href="/" class="brand-logo">Logo</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/">HOME</a></li>
-            <li><a href="/categories">CATEGORIES</a></li>
-            <li><a href="/contact">CONTACT US</a></li>
-            <!-- <li><a class="" href="/login">Login</a></li> -->
-            <li><a href="#" class='dropdown-trigger' data-target='drop'>{{uName}}</a></li>
+            {{#login}}
+                <li><a href="dashboard">DASHBOARD</a></li>
+                <li><a href="#" class='dropdown-trigger' data-target='drop'>{{uName}}<i class="material-icons right">arrow_drop_down</i></a></li>
+            {{/login}}
+            {{^login}}
+                <li><a class="" href="/gateway">Login</a></li>
+            {{/login}}
           </ul>
         </div>
-    </nav>
+    </nav> -->
+
+
+    <nav class="nav-extended green">
+        <div class="nav-wrapper green">
+          <a href="/" class="brand-logo">Blog</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <!-- <li><a href="/">HOME</a></li> -->
+            {{#login}}
+                <!-- <li><a href="dashboard">DASHBOARD</a></li> -->
+                <li><a href="#" class='dropdown-trigger' data-target='drop'>{{uName}}<i class="material-icons right">arrow_drop_down</i></a></li>
+            {{/login}}
+            {{^login}}
+                <li><a class="" href="/gateway">Login</a></li>
+            {{/login}}
+          </ul>
+        </div>
+        
+        <!-- <div class="container green"> -->
+            <div class="nav-content container green">
+                <ul class="tabs tabs-transparent">
+                  <li class="tab"><a href="#test1" class="active">Test 1</a></li>
+                  <li class="tab"><a href="#test2">Test 2</a></li>
+                  <li class="tab"><a href="#test3">Test 3</a></li>
+                </ul>
+            </div>
+        <!-- </div> -->
+      </nav>
+
+
+
     <ul class="dropdown-content" id="drop">
         <li>
             <a href="/logout">Logout</a>
         </li>
     </ul>
+
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+    </ul>
+    
+    <div id="test1" class="col s12">Test 1</div>
+    <div id="test2" class="col s12">Test 2</div>
+    <div id="test3" class="col s12">Test 3</div>
+
+
+
     <div class="container">
         <h1>Dashboard</h1>
     </div>
