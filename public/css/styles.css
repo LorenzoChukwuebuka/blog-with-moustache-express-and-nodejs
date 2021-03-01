@@ -32,3 +32,6 @@ button#regBtn{
     color: rgb(255, 0, 0);
     border-radius: 7px;
 }
+h2.artH2{
+    margin-top: 0;
+}

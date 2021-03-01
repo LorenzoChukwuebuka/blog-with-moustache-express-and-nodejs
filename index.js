@@ -48,28 +48,6 @@ app.get('/createuserstable', (req, res) => {
     });
 });
 
-// Insert into users table
-// app.get('/adduser', (req, res) => {
-//     let post = {firstname: 'James', lastname: 'Clack', userPass: 'tonyworld1360'};
-//     let sql = 'INSERT INTO users SET ?';
-//     let query = db.query(sql, post, (err, result) => {
-//         if(err) throw err;
-//         console.log(result);
-//         res.send('user 1 added...')
-//     });
-// });
-
-// Insert into users table From BackEnd
-// app.get('/adduser1', (req, res) => {
-//     let post = {firstname: 'Paul', lastname: 'Walker', userPass: 'tony123'};
-//     let sql = "INSERT INTO users SET ?";
-//     let query = db.query(sql, post, (err, result) => {
-//         if(err) throw err;
-//         console.log(result);
-//         res.send('user 2 added');
-//     });
-// });
-
 // Insert into users table From FrontEnd
 app.post('/register', function(req, res) {
     let uName = req.body.user.uName;
@@ -117,23 +95,36 @@ let loginOpera = (uName, uPass, req, res) => {
     }
 }
 
-// LOGOUT SESSION 
-app.get('/logout', (req, res) => {
-    req.session.destroy(function(err){
-        res.render('index');
+// Category Insert Section
+app.post('/category', (req, res) => {
+    let catInput = req.body.catInput;
+    let post = {category: catInput};
+    let sql = "INSERT INTO categories SET ?";
+    db.query(sql, post, (err, results) => {
+        if(err) throw err;
+        console.log(results);
+        res.render('dashboard');
     });
 });
-// Select users 
-// app.get('/getusers', (req, res) => {
-//     let sql = "SELECT * FROM users";
-//     let query = db.query(sql, (err, results) => {
-//         if(err) throw err;
-//         console.log(results);
-//         res.send('users fetched...');
-//     });
-// });
 
-// Select users
+app.get('/dashboard', (req, res) => {
+    let uName = req.session.firstname;
+    let login = req.session.login;
+    let sql = "SELECT category FROM categories";
+    db.query(sql, (err, results) => {
+        if(err) throw err;
+        let catRow = JSON.stringify(results).toString();
+        // let sqlResult = req.session.category = catRow.category;
+        console.log(catRow);
+        res.render('dashboard', {
+            login : login,
+            uName : uName,
+            cat   : catRow
+        });
+    });
+});
+
+// Select user
 // app.get('/getuser/:id', (req, res) => {
 //     let sql = `SELECT * FROM users WHERE id = ${req.params.id}`;
 //     let query = db.query(sql, (err, result) => {
@@ -176,28 +167,16 @@ app.get('/', function(req, res){
         uName: uName
     });
 });
-app.get('/dashboard', function(req, res){
-    let uName = req.session.firstname;
-    let login = req.session.login;
-    res.render('dashboard', {
-        login: login,
-        uName: uName
-    });
-});
-// app.get('/categories', function(req, res){
-//     let uName = req.session.firstname;
-//     res.render('categories', {
-//         uName: uName
-//     });
-// });
-// app.get('/contact', function(req, res){
-//     let uName = req.session.firstname;
-//     res.render('contact', {
-//         uName: uName
-//     });
-// });
+
 app.get('/gateway', function(req, res){
     res.render('gateway');
+});
+
+// LOGOUT SESSION 
+app.get('/logout', (req, res) => {
+    req.session.destroy(function(err){
+        res.render('index');
+    });
 });
 
 http.listen(port, () => {

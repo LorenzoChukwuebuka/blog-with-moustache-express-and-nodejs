@@ -10,31 +10,12 @@
     <link rel="stylesheet" href="./css/styles.css" type="text/css" />
 </head>
 <body>
-    <!-- <nav>
-        <div class="nav-wrapper green">
-          <a href="/" class="brand-logo">Logo</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/">HOME</a></li>
-            {{#login}}
-                <li><a href="dashboard">DASHBOARD</a></li>
-                <li><a href="#" class='dropdown-trigger' data-target='drop'>{{uName}}<i class="material-icons right">arrow_drop_down</i></a></li>
-            {{/login}}
-            {{^login}}
-                <li><a class="" href="/gateway">Login</a></li>
-            {{/login}}
-          </ul>
-        </div>
-    </nav> -->
-
-
     <nav class="nav-extended green">
         <div class="nav-wrapper green">
-          <a href="/" class="brand-logo">Blog</a>
+          <a href="/" class="brand-logo">Node Blog</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <!-- <li><a href="/">HOME</a></li> -->
             {{#login}}
-                <!-- <li><a href="dashboard">DASHBOARD</a></li> -->
                 <li><a href="#" class='dropdown-trigger' data-target='drop'>{{uName}}<i class="material-icons right">arrow_drop_down</i></a></li>
             {{/login}}
             {{^login}}
@@ -43,18 +24,14 @@
           </ul>
         </div>
         
-        <!-- <div class="container green"> -->
-            <div class="nav-content container green">
-                <ul class="tabs tabs-transparent">
-                  <li class="tab"><a href="#test1" class="active">Test 1</a></li>
-                  <li class="tab"><a href="#test2">Test 2</a></li>
-                  <li class="tab"><a href="#test3">Test 3</a></li>
-                </ul>
-            </div>
-        <!-- </div> -->
-      </nav>
-
-
+        <div class="nav-content container green">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="#test1" class="active">article</a></li>
+                <li class="tab"><a href="#test2">categories</a></li>
+                <li class="tab"><a href="#test3">users</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <ul class="dropdown-content" id="drop">
         <li>
@@ -62,22 +39,86 @@
         </li>
     </ul>
 
-
     <ul class="sidenav" id="mobile-demo">
         <li><a href="sass.html">Sass</a></li>
         <li><a href="badges.html">Components</a></li>
         <li><a href="collapsible.html">JavaScript</a></li>
     </ul>
     
-    <div id="test1" class="col s12">Test 1</div>
-    <div id="test2" class="col s12">Test 2</div>
-    <div id="test3" class="col s12">Test 3</div>
-
-
-
-    <div class="container">
-        <h1>Dashboard</h1>
+    <div id="test1" class="col s12 container">
+        <div class="row">
+            <div class="col s12">
+                <h1>Blog Articles</h1>
+            </div>
+            <div class="col s9">
+                <h2 class="artH2">All Articles</h2>
+            </div>
+            <div class="col s3">
+                <a class="btn-floating btn-large pulse red right modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+            </div>
+        </div>
     </div>
+    <div id="test2" class="col s12 container">
+        <div class="row">
+            <div class="col s12">
+                <h1>Blog Categories</h1>
+            </div>
+            <div class="col s9">
+                <h2 class="artH2">All Categories</h2>
+            </div>
+            <div class="col s3">
+                <a class="btn-floating btn-large pulse red right modal-trigger" href="#modal2"><i class="material-icons">add</i></a>
+            </div>
+        </div>
+        <h3 style="color: blue;">{{cat}}</h3>
+        <!-- {{#catMsg}}
+            <div class="alert {{msgType}}">
+                {{catMsg}}
+            </div>
+        {{/catMsg}} -->
+    </div>
+    <div id="test3" class="col s12 container">
+        <h1>Blog Users</h1>
+        <h3>All Users</h3>  
+    </div>
+
+    <!-- Article Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h3>Create Article</h3>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn waves-effect waves-light" id="artBtn">
+                create
+                <i class="material-icons right">create</i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Categories Modal Structure -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h3>Create Categories</h3>
+            <form action="/category" method="POST">
+                <div class="input-field">
+                    <div class="row">
+                        <div class="col s6">
+                            <label for="catInput">Category Name</label>
+                            <input type="text" name="catInput" id="catInput" placeholder="Enter Category Name" class="validate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn waves-effect waves-light" id="catBtn">
+                        create
+                        <i class="material-icons right">create</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
 
     <script src="./js/jquery-3.0.0.min.js"></script>
     <script src="./js/materialize.js"></script>
